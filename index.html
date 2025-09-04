@@ -3,9 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>FloodGuard — Community Flood Response (Pakistan)</title>
+  <title>FloodGuard</title>
 
-  <!-- Tailwind CDN for quick layout -->
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Leaflet -->
@@ -14,7 +13,6 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
           integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
-  <!-- EmailJS (optional) -->
   <script defer src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <style>
@@ -34,6 +32,7 @@
 </head>
 <body class="bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-900">
   <div id="app" class="min-h-screen flex flex-col">
+    
     <!-- Header -->
     <header class="sticky top-0 bg-white/90 backdrop-blur border-b z-20">
       <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
@@ -58,6 +57,7 @@
     </header>
 
     <main class="max-w-7xl mx-auto p-4 w-full flex-1 space-y-6">
+      
       <!-- CONFIG / Quick Guide -->
       <section class="grid md:grid-cols-2 gap-4">
         <div class="bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-2xl p-4 shadow">
@@ -101,6 +101,7 @@
 
       <!-- Map + Risk + Checklist -->
       <section class="grid lg:grid-cols-3 gap-4">
+        
         <!-- Map -->
         <div class="lg:col-span-2 bg-white rounded-2xl p-4 shadow">
           <div class="flex items-center justify-between mb-3">
@@ -142,13 +143,14 @@
             <h4 class="font-semibold">📢 Quick Actions</h4>
             <div class="mt-2 grid gap-2">
               <button id="testEmailBtn" class="bg-blue-600 text-white py-2 rounded">📧 Test Email Alert</button>
+              
               <button id="manualAlertBtn" class="bg-yellow-600 text-white py-2 rounded">🚨 Broadcast Alert</button>
             </div>
           </div>
         </div>
       </section>
 
-      Report & Contacts
+      <!-- Report & Contacts-->
       <section class="grid lg:grid-cols-2 gap-4">
         <div class="bg-white rounded-2xl p-4 shadow">
           <h4 class="font-semibold">📸 Community Reports</h4>
@@ -286,14 +288,14 @@
 
   function updateRiskAssessment(){
     const w = STATE.currentWeather;
-    const rainOverride = 0; // could add UI for manual override
+    const rainOverride = 0; 
     let score = 0;
     if(w){
       const rainfall = rainOverride || (w.rain?.['1h'] || 0);
       score += Math.min((rainfall / 50) * 40, 40);         // rainfall factor
       score += Math.min((w.main.humidity / 100) * 30, 30); // humidity factor scaled
       score += w.main.pressure < 1000 ? 10 : 0;            // low pressure
-      // Additional heuristics could be added (wind, forecasted rainfall)
+  
     }
     score = Math.round(score);
     const level = getRiskLevel(score);
@@ -329,7 +331,8 @@
     const alerts = load('alerts', []);
     alerts.unshift(alert);
     save('alerts', alerts);
-    // update UI (here, just a notification)
+    
+    
     showNotification(alert.message, 'warning', 6000);
   }
 
@@ -776,3 +779,4 @@
   </script>
 </body>
 </html>
+
