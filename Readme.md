@@ -20,7 +20,8 @@ It works entirely in the browser — no login, no server — so it’s fast even
 
 ## 📸 Screenshot
 
-*(insert a screenshot or animated GIF of the dashboard here)*
+<img width="1685" height="1249" alt="image" src="https://github.com/user-attachments/assets/f439dd3c-2eae-43a8-9a30-00e93edcdf7f" />
+
 
 ---
 
